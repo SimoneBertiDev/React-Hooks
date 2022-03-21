@@ -6,32 +6,65 @@ const url = "http://localhost:8080/user";
 
 const FetchComponent = () => {
   const [users, setUsers] = useState([]);
+  const [simone, setSimone] = useState(false);
+  const [id, setID] = useState(false);
+
 
   const getData = async () => {
     const responde = await Axios.get(url);
-    if (responde.status === 200) {
-      setUsers(responde.data);
-    }
+
+    setUsers(responde.data);
 
     // Axios.get(url).then( reposnse => setUsers(reposnse)).catch(err => console.log(err));
   };
 
+  const delData = async (id) => {
+    setSimone(true);
+    setID(id);
+  };
+const getsih = () => {
+  setSimone(false);
+}
   useEffect(() => {
     getData();
-  },[]);
+    if(simone === true){//funziona ma se si ripete molteplice volte va in crash
+      Axios.delete(url + "/" + id);
+      getsih();
+    }
+  });
 
   return (
     <>
-        {users.map((el) => {
-          const {userId, firstName, lastName, userType, startDate, codiceFiscale, eta} = el
-          return (
-            <div key={userId} className="item shadow">
-              <h5>{firstName} {lastName}</h5>
-              <p>Tipo abbonamento {userType}, inizio {startDate}<p>Dati personali {codiceFiscale.toUpperCase()}, nato il {eta}</p></p>
-              
-            </div>
-          );
-        })}
+      {users.map((el) => {
+        const {
+          userId,
+          firstName,
+          lastName,
+          userType,
+          startDate,
+          codiceFiscale,
+          eta,
+        } = el;
+        return (
+          <div key={userId} className="item shadow">
+            <h5>
+              {firstName} {lastName}
+            </h5>
+            <p>
+              Tipo abbonamento {userType}, inizio {startDate}
+              <span>
+                Dati personali {codiceFiscale.toUpperCase()}, di eta {eta}
+              </span>
+            </p>
+            <button
+              className="btn btn-danger"
+              onClick={() => delData(userId)}
+            >
+              eleiminare
+            </button>
+          </div>
+        );
+      })}
     </>
   );
 };
