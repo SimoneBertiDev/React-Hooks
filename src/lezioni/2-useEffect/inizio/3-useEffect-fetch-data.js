@@ -18,7 +18,7 @@ const FetchComponent = () => {
     // Axios.get(url).then( reposnse => setUsers(reposnse)).catch(err => console.log(err));
   };
 
-  const delData = async (id) => {
+  const delData = (id) => {
     setSimone(true);
     setID(id);
   };
@@ -31,7 +31,7 @@ const getsih = () => {
       Axios.delete(url + "/" + id);
       getsih();
     }
-  });
+  },[id, users, simone]);
 
   return (
     <>
