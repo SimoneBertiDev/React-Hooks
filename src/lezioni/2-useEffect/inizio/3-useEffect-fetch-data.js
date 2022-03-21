@@ -22,18 +22,16 @@ const FetchComponent = () => {
 
   return (
     <>
-      <ul>
         {users.map((el) => {
           const {userId, firstName, lastName, userType, startDate, codiceFiscale, eta} = el
           return (
-            <li key={userId}>
+            <div key={userId} className="item shadow">
               <h5>{firstName} {lastName}</h5>
-              <p>Tipo abbonamento {userType}, inizio {startDate}</p>
-              <p>Dati personali {codiceFiscale.toUpperCase()}, nato il {eta}</p>
-            </li>
+              <p>Tipo abbonamento {userType}, inizio {startDate}<p>Dati personali {codiceFiscale.toUpperCase()}, nato il {eta}</p></p>
+              
+            </div>
           );
         })}
-      </ul>
     </>
   );
 };
