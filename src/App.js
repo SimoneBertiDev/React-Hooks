@@ -1,4 +1,4 @@
-import Inizio from './lezioni/9-custom-hooks/inizio/fetch-custom'
+import Inizio from './lezioni/10-prop-types/inizio/prop-types'
 
 function App() {
   return (
