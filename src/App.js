@@ -1,4 +1,4 @@
-import Inizio from './lezioni/8-useContext/inizio/context'
+import Inizio from './lezioni/9-custom-hooks/inizio/fetch-custom'
 
 function App() {
   return (
