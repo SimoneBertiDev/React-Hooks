@@ -1,4 +1,4 @@
-import Inizio from './lezioni/3-render-condizionale/inizio/3-show-hide'
+import Inizio from './lezioni/4-forms/inizio/2-input-object-state'
 
 function App() {
   return (

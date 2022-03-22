@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from "react";
 
 const ControlledInput = () => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [cellulare, setCellulare] = useState("");
+  const [persona, setPersona] = useState({
+    nome: "",
+    email: "",
+    cellulare: "",
+  });
   const [persone, setPersone] = useState([]);
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    setPersone([
-      ...persone,
-      {
-        id: persone.length + 1,
-        nome,
-        email,
-        cellulare,
-      },
-    ]);
-    setNome("");
-    setEmail("");
-    setCellulare("");
+    console.log(persona);
+    if (persona.nome && persona.email && persona.cellulare) {
+      setPersone([
+        ...persone,
+        {
+          id: new Date(Date.now()).getTime().toString(),
+          ...persona,
+        },
+      ]);
+      setPersona({
+        nome: "",
+        email: "",
+        cellulare: "",
+      });
+    } else {
+      alert("riempi tutto il from");
+    }
+  };
+
+  const hendleChange = (e) => {
+    const { name, value } = e.target;
+    // console.log(e.target.value);
+    // console.log(persona[name]);
+    setPersona({ ...persona, [name]: value });
   };
 
   useEffect(() => {
@@ -38,8 +52,8 @@ const ControlledInput = () => {
           id="nome"
           name="nome"
           className="form-control col-9"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
+          value={persona.nome}
+          onChange={hendleChange}
         />
       </div>
       <div className="form-group  d-flex align-items-center justify-content-around container">
@@ -52,8 +66,8 @@ const ControlledInput = () => {
           id="email"
           name="email"
           className="form-control col-9"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={persona.email}
+          onChange={hendleChange}
         />
       </div>
       <div className="form-group  d-flex align-items-center justify-content-around container">
@@ -66,8 +80,8 @@ const ControlledInput = () => {
           id="cellulare"
           name="cellulare"
           className="form-control col-9"
-          value={cellulare}
-          onChange={(e) => setCellulare(e.target.value)}
+          value={persona.cellulare}
+          onChange={hendleChange}
         />
       </div>
       <button type="submit" className="btn btn-info ">
