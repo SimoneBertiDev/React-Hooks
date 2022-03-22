@@ -1,4 +1,4 @@
-import Inizio from './lezioni/5-useRef/inizio/useref-example'
+import Inizio from './lezioni/6-useReducer/inizio/index'
 
 function App() {
   return (
