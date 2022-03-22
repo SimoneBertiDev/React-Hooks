@@ -1,4 +1,4 @@
-import Inizio from './lezioni/7-prop-drilling/inizio/prop-drilling'
+import Inizio from './lezioni/8-useContext/inizio/context'
 
 function App() {
   return (
