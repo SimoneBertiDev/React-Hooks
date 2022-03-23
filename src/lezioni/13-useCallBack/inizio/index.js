@@ -12,6 +12,13 @@ const trovaMaggiore = (array) => {
 const Index = () => {
   const { data } = useFetch(url);
   const [contatore, setContatore] = useState(0);
+  const [bannati, setBannati] = useState(0);
+
+  const addBannati = useCallback(() =>{
+    setBannati(bannati + 1);
+  // },[]);
+  }, [bannati]);
+  console.log(bannati);
 
   useMemo(() => trovaMaggiore(data), [data]);
   return (
@@ -27,14 +34,14 @@ const Index = () => {
       </div>
       <div style={{ width: "fit-content", margin: "auto" }}>
         {data.map((el) => {
-          return <Elenco key={el.id} {...el} />;
+          return <Elenco key={el.id} {...el} addBannati={addBannati}/>;
         })}
       </div>
     </>
   );
 };
 
-const Elenco = React.memo(({ avatar_url: image, login: name }) => {
+const Elenco = React.memo(({ avatar_url: image, login: name, addBannati}) => {
   console.log("item");
   return (
     <article className="card bg-white my-3 shadow-sm">
@@ -45,6 +52,9 @@ const Elenco = React.memo(({ avatar_url: image, login: name }) => {
         style={{ width: "30%", borderRadius: "50%", margin: "auto" }}
       />
       <h4>{name}</h4>
+      <button className="btn btn-danger" onClick={addBannati}>
+        banna
+      </button>
     </article>
   );
 });
