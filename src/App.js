@@ -1,4 +1,4 @@
-import Inizio from './lezioni/11-React-Router/inizio/screen/index'
+import Inizio from './lezioni/12-memo-useMemo/inizio/index'
 
 function App() {
   return (
